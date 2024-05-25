@@ -11,8 +11,17 @@ config_version=5
 [application]
 
 config/name="GameDevTV Jam 2024"
+run/main_scene="res://assets/main/main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=480
+window/size/viewport_height=270
+window/size/window_width_override=960
+window/size/window_height_override=540
+window/stretch/mode="canvas_items"
 
 [dotnet]
 
