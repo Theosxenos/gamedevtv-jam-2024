@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcn4dk7hm7rfj"]
+
+[ext_resource type="Script" path="res://src/staff.gd" id="1_lgqu8"]
+[ext_resource type="PackedScene" uid="uid://bihrr1i37su8v" path="res://assets/character/projectile/orb.tscn" id="2_g15wo"]
+[ext_resource type="Texture2D" uid="uid://710e18v1iure" path="res://assets/character/weapon/staff/tile_0130.png" id="3_iryw8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ok46s"]
+radius = 100.0
+
+[node name="Staff" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_lgqu8")
+projectile_scene = ExtResource("2_g15wo")
+
+[node name="WeaponSprite" type="Sprite2D" parent="."]
+position = Vector2(-8, 2)
+texture = ExtResource("3_iryw8")
+
+[node name="DetectionRange" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ok46s")
+
+[node name="FireRate" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[node name="ProjectileStart" type="Marker2D" parent="."]
+position = Vector2(-8, -2)
+
+[connection signal="timeout" from="FireRate" to="." method="_on_fire_rate_timeout"]

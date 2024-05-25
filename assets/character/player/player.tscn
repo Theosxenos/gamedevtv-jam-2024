@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://0qxp2qd8ydf2"]
+[gd_scene load_steps=5 format=3 uid="uid://0qxp2qd8ydf2"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_5l27m"]
 [ext_resource type="Texture2D" uid="uid://yvbju4asky3k" path="res://assets/character/player/tile_0099.png" id="2_7ckjy"]
-[ext_resource type="PackedScene" uid="uid://bihrr1i37su8v" path="res://assets/character/projectile/orb.tscn" id="2_c5177"]
-[ext_resource type="Texture2D" uid="uid://710e18v1iure" path="res://assets/character/weapon/tile_0130.png" id="3_1n2hu"]
+[ext_resource type="PackedScene" uid="uid://dcn4dk7hm7rfj" path="res://assets/character/weapon/staff/staff.tscn" id="3_uolw4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lwcjd"]
 radius = 1.0
@@ -13,23 +12,14 @@ height = 10.0
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_5l27m")
-projectile_scene = ExtResource("2_c5177")
 
 [node name="CharacterSprite" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_7ckjy")
-
-[node name="WeaponSprite" type="Sprite2D" parent="CharacterSprite"]
-position = Vector2(-8, 2)
-texture = ExtResource("3_1n2hu")
 
 [node name="Feet" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_lwcjd")
 
-[node name="FireRate" type="Timer" parent="."]
-wait_time = 0.3
-autostart = true
-
-[connection signal="timeout" from="FireRate" to="." method="_on_fire_rate_timeout"]
+[node name="Staff" parent="." instance=ExtResource("3_uolw4")]

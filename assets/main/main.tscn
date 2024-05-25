@@ -290,7 +290,7 @@ format = 2
 layer_0/tile_data = PackedInt32Array(131086, 0, 0, 131087, 0, 0, 524289, 0, 0, 589825, 0, 0)
 
 [node name="Player" parent="Level" instance=ExtResource("3_0rlpb")]
-position = Vector2(240, 64)
+position = Vector2(240, 144)
 
 [node name="EnemySpawner" type="Node2D" parent="Level"]
 script = ExtResource("5_2tuqx")
