@@ -2,6 +2,7 @@ class_name Orb extends Area2D
 
 @export var range := 100.0
 @export var speed := 50.0
+@export var attack: Attack
 
 var target: Vector2
 
@@ -23,6 +24,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is Hurtbox:
-		(area as Hurtbox).take_hit()
+		(area as Hurtbox).take_hit(attack)
 		
 	queue_free()

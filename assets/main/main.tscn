@@ -297,7 +297,7 @@ script = ExtResource("5_2tuqx")
 enemy_scene = ExtResource("4_62qmc")
 
 [node name="SpawnTimer" type="Timer" parent="Level/EnemySpawner"]
-wait_time = 0.3
+wait_time = 0.6
 autostart = true
 
 [node name="SpawnPositions" type="Node2D" parent="Level/EnemySpawner"]
