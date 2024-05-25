@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://0nlgk5w76xs8"]
+[gd_scene load_steps=6 format=3 uid="uid://0nlgk5w76xs8"]
 
 [ext_resource type="Script" path="res://src/cyclops.gd" id="2_1ansc"]
 [ext_resource type="Texture2D" uid="uid://cbe1vg158up82" path="res://assets/character/enemy/cyclops/tile_0109.png" id="2_gc8l2"]
-[ext_resource type="Texture2D" uid="uid://710e18v1iure" path="res://assets/character/weapon/tile_0130.png" id="3_1yi33"]
 [ext_resource type="Script" path="res://src/hurtbox.gd" id="4_tcyft"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lwcjd"]
@@ -22,11 +21,6 @@ speed = 30.0
 [node name="CharacterSprite" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_gc8l2")
-
-[node name="WeaponSprite" type="Sprite2D" parent="CharacterSprite"]
-visible = false
-position = Vector2(-8, 2)
-texture = ExtResource("3_1yi33")
 
 [node name="Feet" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
