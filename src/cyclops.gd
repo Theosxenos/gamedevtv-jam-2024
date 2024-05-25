@@ -13,3 +13,7 @@ func _physics_process(delta: float) -> void:
 	var direction := global_position.direction_to(_player.global_position)
 	velocity = direction * speed
 	move_and_slide()
+
+
+func _on_hurtbox_hit() -> void:
+	queue_free()

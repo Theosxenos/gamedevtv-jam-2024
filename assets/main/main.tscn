@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwsligumeeoci"]
+[gd_scene load_steps=10 format=3 uid="uid://bwsligumeeoci"]
 
 [ext_resource type="Texture2D" uid="uid://dv81qe7btwu03" path="res://assets/tilemap/tilemap.png" id="1_h07t4"]
 [ext_resource type="Texture2D" uid="uid://di26kyrql7biv" path="res://assets/background/tile_0042_transparent.png" id="2_b4et5"]
 [ext_resource type="PackedScene" uid="uid://0qxp2qd8ydf2" path="res://assets/character/player/player.tscn" id="3_0rlpb"]
 [ext_resource type="PackedScene" uid="uid://0nlgk5w76xs8" path="res://assets/character/enemy/cyclops/cyclops.tscn" id="4_62qmc"]
+[ext_resource type="Script" path="res://src/enemy_spawner.gd" id="5_2tuqx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qmyd1"]
 texture = ExtResource("1_h07t4")
@@ -291,6 +292,26 @@ layer_0/tile_data = PackedInt32Array(131086, 0, 0, 131087, 0, 0, 524289, 0, 0, 5
 [node name="Player" parent="Level" instance=ExtResource("3_0rlpb")]
 position = Vector2(240, 64)
 
-[node name="Cyclops" parent="Level" instance=ExtResource("4_62qmc")]
-position = Vector2(83, 152)
-collision_mask = 1
+[node name="EnemySpawner" type="Node2D" parent="Level"]
+script = ExtResource("5_2tuqx")
+enemy_scene = ExtResource("4_62qmc")
+
+[node name="SpawnTimer" type="Timer" parent="Level/EnemySpawner"]
+wait_time = 0.3
+autostart = true
+
+[node name="SpawnPositions" type="Node2D" parent="Level/EnemySpawner"]
+
+[node name="Top" type="Marker2D" parent="Level/EnemySpawner/SpawnPositions"]
+position = Vector2(240, 39)
+
+[node name="Bottom" type="Marker2D" parent="Level/EnemySpawner/SpawnPositions"]
+position = Vector2(240, 248)
+
+[node name="Left" type="Marker2D" parent="Level/EnemySpawner/SpawnPositions"]
+position = Vector2(25, 144)
+
+[node name="Right" type="Marker2D" parent="Level/EnemySpawner/SpawnPositions"]
+position = Vector2(456, 144)
+
+[connection signal="timeout" from="Level/EnemySpawner/SpawnTimer" to="Level/EnemySpawner" method="_on_spawn_timer_timeout"]
