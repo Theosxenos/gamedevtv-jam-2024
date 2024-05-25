@@ -27,6 +27,17 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="GameDevTV Jam 2024"
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "orange",
+"res://src/": "green"
+}
+
+[global_group]
+
+player=""
+
 [input]
 
 move_left={
@@ -58,6 +69,7 @@ move_down={
 
 2d_physics/layer_1="World"
 2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemy"
 
 [rendering]
 
