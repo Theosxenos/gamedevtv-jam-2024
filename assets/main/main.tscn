@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwsligumeeoci"]
+[gd_scene load_steps=12 format=3 uid="uid://bwsligumeeoci"]
 
 [ext_resource type="Texture2D" uid="uid://dv81qe7btwu03" path="res://assets/tilemap/tilemap.png" id="1_h07t4"]
 [ext_resource type="Texture2D" uid="uid://di26kyrql7biv" path="res://assets/background/tile_0042_transparent.png" id="2_b4et5"]
 [ext_resource type="PackedScene" uid="uid://0qxp2qd8ydf2" path="res://assets/character/player/player.tscn" id="3_0rlpb"]
-[ext_resource type="PackedScene" uid="uid://0nlgk5w76xs8" path="res://assets/character/enemy/cyclops/cyclops.tscn" id="4_62qmc"]
 [ext_resource type="Script" path="res://src/enemy_spawner.gd" id="5_2tuqx"]
+[ext_resource type="Script" path="res://src/spawn_info.gd" id="5_gp5sm"]
+[ext_resource type="Resource" uid="uid://du2uj3x3odf3f" path="res://assets/main/cyclops_spawn.tres" id="6_1cfa0"]
+[ext_resource type="Resource" uid="uid://bgsiq2wfcc5b7" path="res://assets/main/ratpack_spawn.tres" id="7_8dg4t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qmyd1"]
 texture = ExtResource("1_h07t4")
@@ -294,24 +296,21 @@ position = Vector2(240, 144)
 
 [node name="EnemySpawner" type="Node2D" parent="Level"]
 script = ExtResource("5_2tuqx")
-enemy_scene = ExtResource("4_62qmc")
-
-[node name="SpawnTimer" type="Timer" parent="Level/EnemySpawner"]
-wait_time = 0.6
-autostart = true
+spawns = Array[ExtResource("5_gp5sm")]([ExtResource("6_1cfa0"), ExtResource("7_8dg4t")])
 
 [node name="SpawnPositions" type="Node2D" parent="Level/EnemySpawner"]
 
-[node name="Top" type="Marker2D" parent="Level/EnemySpawner/SpawnPositions"]
+[node name="Doors" type="Node2D" parent="Level/EnemySpawner/SpawnPositions"]
+unique_name_in_owner = true
+
+[node name="Top" type="Marker2D" parent="Level/EnemySpawner/SpawnPositions/Doors"]
 position = Vector2(240, 39)
 
-[node name="Bottom" type="Marker2D" parent="Level/EnemySpawner/SpawnPositions"]
+[node name="Bottom" type="Marker2D" parent="Level/EnemySpawner/SpawnPositions/Doors"]
 position = Vector2(240, 248)
 
-[node name="Left" type="Marker2D" parent="Level/EnemySpawner/SpawnPositions"]
+[node name="Left" type="Marker2D" parent="Level/EnemySpawner/SpawnPositions/Doors"]
 position = Vector2(25, 144)
 
-[node name="Right" type="Marker2D" parent="Level/EnemySpawner/SpawnPositions"]
+[node name="Right" type="Marker2D" parent="Level/EnemySpawner/SpawnPositions/Doors"]
 position = Vector2(456, 144)
-
-[connection signal="timeout" from="Level/EnemySpawner/SpawnTimer" to="Level/EnemySpawner" method="_on_spawn_timer_timeout"]

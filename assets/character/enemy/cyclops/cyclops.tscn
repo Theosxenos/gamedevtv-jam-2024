@@ -14,7 +14,6 @@ height = 16.0
 
 [node name="Cyclops" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 4
-collision_mask = 5
 script = ExtResource("2_1ansc")
 health = 2
 speed = 30.0
