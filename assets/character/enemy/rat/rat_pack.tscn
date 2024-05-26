@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbyx2bwppg0mp"]
+
+[ext_resource type="Script" path="res://src/rat_pack.gd" id="1_tc0lw"]
+[ext_resource type="PackedScene" uid="uid://jp3uxfwtbnry" path="res://assets/character/enemy/rat/rat.tscn" id="2_0lgcy"]
+
+[node name="RatPack" type="Node2D"]
+script = ExtResource("1_tc0lw")
+rat_scene = ExtResource("2_0lgcy")
+start_radius = 70

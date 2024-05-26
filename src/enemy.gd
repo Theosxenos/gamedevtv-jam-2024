@@ -2,7 +2,7 @@ class_name Enemy extends CharacterBody2D
 
 enum EnemyState {MOVE, KNOCKBACK}
 
-@export var health := 2
+@export var health := 1
 @export var speed := 40.0
 @export var knockback_friction := 40
 

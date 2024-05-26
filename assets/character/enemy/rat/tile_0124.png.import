@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d116e8apve55a"
-path="res://.godot/imported/tile_0123.png-b59a49832f9f40da5a687dbc2510d42c.ctex"
+uid="uid://b77vc4dmajn3q"
+path="res://.godot/imported/tile_0124.png-9d58d8bf12f2d3e6f35333b8faae4a76.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/character/enemy/tile_0123.png"
-dest_files=["res://.godot/imported/tile_0123.png-b59a49832f9f40da5a687dbc2510d42c.ctex"]
+source_file="res://assets/character/enemy/rat/tile_0124.png"
+dest_files=["res://.godot/imported/tile_0124.png-9d58d8bf12f2d3e6f35333b8faae4a76.ctex"]
 
 [params]
 
