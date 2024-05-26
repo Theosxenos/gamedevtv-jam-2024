@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SpawnInfo" load_steps=3 format=3 uid="uid://du2uj3x3odf3f"]
+
+[ext_resource type="PackedScene" uid="uid://0nlgk5w76xs8" path="res://assets/character/enemy/cyclops/cyclops.tscn" id="1_20q0v"]
+[ext_resource type="Script" path="res://src/spawn_info.gd" id="1_d0tnu"]
+
+[resource]
+script = ExtResource("1_d0tnu")
+enemy_scene = ExtResource("1_20q0v")
+time_start = 0.0
+time_stop = 1.0
+continous = false
+spawn_amount = 20
+wave_interval = 1.0
+spawn_place = 0

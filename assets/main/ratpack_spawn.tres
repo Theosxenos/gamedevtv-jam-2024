@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SpawnInfo" load_steps=3 format=3 uid="uid://bgsiq2wfcc5b7"]
+
+[ext_resource type="Script" path="res://src/spawn_info.gd" id="1_najwo"]
+[ext_resource type="PackedScene" uid="uid://dbyx2bwppg0mp" path="res://assets/character/enemy/rat/rat_pack.tscn" id="1_nomqp"]
+
+[resource]
+script = ExtResource("1_najwo")
+enemy_scene = ExtResource("1_nomqp")
+time_start = 60.0
+time_stop = 60.0
+continous = false
+spawn_amount = 1
+spawn_interval = 0.0
+spawn_positions = 2
