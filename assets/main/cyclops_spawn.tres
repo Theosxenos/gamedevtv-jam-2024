@@ -7,8 +7,8 @@
 script = ExtResource("1_d0tnu")
 enemy_scene = ExtResource("1_20q0v")
 time_start = 0.0
-time_stop = 10.0
-continous = false
-spawn_amount = 2
-wave_interval = 1.0
+time_stop = 0.0
+continous = true
+spawn_amount = 1
+wave_interval = 0.6
 spawn_place = 0

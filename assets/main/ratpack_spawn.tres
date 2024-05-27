@@ -6,9 +6,9 @@
 [resource]
 script = ExtResource("1_najwo")
 enemy_scene = ExtResource("1_nomqp")
-time_start = 10.0
-time_stop = 20.0
-continous = false
+time_start = 3.0
+time_stop = 0.0
+continous = true
 spawn_amount = 1
-wave_interval = 3.0
-spawn_place = 0
+wave_interval = 5.0
+spawn_place = 2
