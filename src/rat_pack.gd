@@ -1,5 +1,7 @@
 extends Node2D
 
+signal killed
+
 @export var rat_scene: PackedScene
 @export var rat_amount := 10
 @export var start_radius := 60
@@ -15,6 +17,14 @@ func spawn_rats(center_pos: Vector2) -> void:
 		var angle := i * angle_step
 		var rat: Enemy = rat_scene.instantiate()
 		var direction := Vector2(cos(angle), sin(angle))
+		
 		rat.global_position = center_pos + direction * start_radius
+		rat.killed.connect(_on_rat_killed)
 		
 		add_child(rat)
+
+func _on_rat_killed() -> void:
+	killed.emit()
+	rat_amount -= 1
+	if rat_amount <= 0:
+		queue_free()

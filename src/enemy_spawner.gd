@@ -1,5 +1,6 @@
 class_name EnemySpawner extends Node2D
 
+signal enemy_spawned(enemy)
 
 @export var level_spawn_positions: Dictionary
 @export var spawns: Array[SpawnInfo]
@@ -57,5 +58,7 @@ func spawn_enemy(enemy_scene: PackedScene, spawn_points: Array) -> void:
 	var enemy: Node2D = enemy_scene.instantiate()
 	if spawn_points.size() > 0:
 		enemy.global_position = spawn_points.pick_random()
-
+	
+	enemy_spawned.emit(enemy)
+	
 	_parent.add_child(enemy)
