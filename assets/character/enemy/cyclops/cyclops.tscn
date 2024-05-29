@@ -1,8 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://0nlgk5w76xs8"]
+[gd_scene load_steps=10 format=3 uid="uid://0nlgk5w76xs8"]
 
 [ext_resource type="Script" path="res://src/enemy.gd" id="2_1ansc"]
 [ext_resource type="Texture2D" uid="uid://cbe1vg158up82" path="res://assets/character/enemy/cyclops/tile_0109.png" id="2_gc8l2"]
+[ext_resource type="PackedScene" uid="uid://cx33c5p2iwmbh" path="res://assets/character/weapon/shared/weapon.tscn" id="3_lyj0n"]
 [ext_resource type="PackedScene" uid="uid://dxtpu4xnm6eo0" path="res://assets/character/collision_boxes/hurtbox.tscn" id="3_wgnxm"]
+[ext_resource type="Script" path="res://src/attack.gd" id="4_3wx3j"]
+
+[sub_resource type="Resource" id="Resource_h5msl"]
+script = ExtResource("4_3wx3j")
+damage = 1
+knockback_force = 0.0
+stun_duration = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g57ke"]
+radius = 6.0
+height = 16.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lwcjd"]
 radius = 1.0
@@ -22,16 +34,36 @@ speed = 30.0
 texture_filter = 1
 texture = ExtResource("2_gc8l2")
 
+[node name="Body" parent="." instance=ExtResource("3_lyj0n")]
+attack_rate = 2.0
+
+[node name="Hitbox" parent="Body" index="0"]
+collision_layer = 16
+collision_mask = 32
+attack = SubResource("Resource_h5msl")
+
+[node name="CollisionShape2D" parent="Body/Hitbox" index="0"]
+shape = SubResource("CapsuleShape2D_g57ke")
+debug_color = Color(0.94902, 0.0745098, 0.14902, 0.419608)
+
+[node name="AttackTimer" parent="Body" index="1"]
+one_shot = true
+
 [node name="Feet" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_lwcjd")
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_wgnxm")]
+collision_layer = 64
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = SubResource("CapsuleShape2D_ymfae")
+debug_color = Color(0, 0.6, 0.262745, 0.419608)
 
+[connection signal="area_exited" from="Body/Hitbox" to="Body/Hitbox" method="_on_area_exited"]
 [connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
 
+[editable path="Body"]
+[editable path="Body/Hitbox"]
 [editable path="Hurtbox"]

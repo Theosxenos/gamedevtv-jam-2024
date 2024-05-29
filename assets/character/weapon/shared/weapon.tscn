@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx33c5p2iwmbh"]
+
+[ext_resource type="Script" path="res://src/weapon.gd" id="1_7ca4s"]
+[ext_resource type="PackedScene" uid="uid://ywe63a87v137" path="res://assets/character/collision_boxes/hitbox.tscn" id="1_uc54u"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_7ca4s")
+
+[node name="Hitbox" parent="." instance=ExtResource("1_uc54u")]
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[connection signal="attacked" from="Hitbox" to="." method="_on_hitbox_attacked"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+
+[editable path="Hitbox"]

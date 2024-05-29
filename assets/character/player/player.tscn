@@ -1,12 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://0qxp2qd8ydf2"]
+[gd_scene load_steps=10 format=3 uid="uid://0qxp2qd8ydf2"]
 
 [ext_resource type="Script" path="res://src/player.gd" id="1_5l27m"]
 [ext_resource type="Texture2D" uid="uid://yvbju4asky3k" path="res://assets/character/player/tile_0099.png" id="2_7ckjy"]
 [ext_resource type="PackedScene" uid="uid://dcn4dk7hm7rfj" path="res://assets/character/weapon/staff/staff.tscn" id="3_uolw4"]
+[ext_resource type="PackedScene" uid="uid://dxtpu4xnm6eo0" path="res://assets/character/collision_boxes/hurtbox.tscn" id="4_coxnf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lwcjd"]
 radius = 1.0
 height = 10.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hhjnk"]
+radius = 6.0
+height = 14.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qst86"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w22ij"]
+bg_color = Color(0.388235, 0.8, 0.372549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ob7ov"]
+bg_color = Color(0.388235, 0.8, 0.741176, 1)
 
 [node name="Character" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
@@ -23,3 +37,35 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_lwcjd")
 
 [node name="Staff" parent="." instance=ExtResource("3_uolw4")]
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_coxnf")]
+collision_layer = 32
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_hhjnk")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -8.0
+offset_top = 10.0
+offset_right = 8.0
+offset_bottom = 12.0
+theme_override_styles/background = SubResource("StyleBoxFlat_qst86")
+theme_override_styles/fill = SubResource("StyleBoxFlat_w22ij")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="XpBar" type="ProgressBar" parent="."]
+offset_left = -8.0
+offset_top = 12.0
+offset_right = 8.0
+offset_bottom = 14.0
+theme_override_styles/background = SubResource("StyleBoxFlat_qst86")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ob7ov")
+value = 50.0
+show_percentage = false
+
+[connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
+
+[editable path="Hurtbox"]

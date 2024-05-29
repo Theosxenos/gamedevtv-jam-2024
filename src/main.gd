@@ -10,3 +10,8 @@ func on_enemy_died() -> void:
 
 func _on_enemy_spawner_enemy_spawned(enemy) -> void:
 	enemy.killed.connect(on_enemy_died)
+
+#TODO implement game_over
+func _on_player_died() -> void:
+	#$Level.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+	pass
