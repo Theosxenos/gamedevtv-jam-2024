@@ -2,13 +2,15 @@ class_name Player extends CharacterBody2D
 
 signal died
 
+@export_category("Player Stats")
 @export var health := 100.0
 @export var max_health := 100.0
 @export var speed := 45.0
 
-var direction := Vector2.ZERO
+@export_category("Controls")
+@export var health_bar: ProgressBar
 
-@onready var health_bar: ProgressBar = $HealthBar
+var direction := Vector2.ZERO
 
 func _ready() -> void:
 	health_bar.value = health / max_health

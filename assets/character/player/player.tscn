@@ -22,10 +22,11 @@ bg_color = Color(0.388235, 0.8, 0.372549, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ob7ov"]
 bg_color = Color(0.388235, 0.8, 0.741176, 1)
 
-[node name="Character" type="CharacterBody2D" groups=["player"]]
+[node name="Character" type="CharacterBody2D" node_paths=PackedStringArray("health_bar") groups=["player"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_5l27m")
+health_bar = NodePath("ProgressBars/HealthBar")
 
 [node name="CharacterSprite" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -45,7 +46,13 @@ collision_layer = 32
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_hhjnk")
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="ProgressBars" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="ProgressBar" parent="ProgressBars"]
 offset_left = -8.0
 offset_top = 10.0
 offset_right = 8.0
@@ -56,7 +63,7 @@ max_value = 1.0
 value = 1.0
 show_percentage = false
 
-[node name="XpBar" type="ProgressBar" parent="."]
+[node name="XpBar" type="ProgressBar" parent="ProgressBars"]
 offset_left = -8.0
 offset_top = 12.0
 offset_right = 8.0
