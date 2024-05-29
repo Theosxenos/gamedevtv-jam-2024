@@ -41,6 +41,7 @@ shape = SubResource("CapsuleShape2D_lwcjd")
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_coxnf")]
 collision_layer = 32
+invincibility_duration = 0.3
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(0, 1)
@@ -53,6 +54,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="HealthBar" type="ProgressBar" parent="ProgressBars"]
+layout_mode = 0
 offset_left = -8.0
 offset_top = 10.0
 offset_right = 8.0
@@ -64,6 +66,7 @@ value = 1.0
 show_percentage = false
 
 [node name="XpBar" type="ProgressBar" parent="ProgressBars"]
+layout_mode = 0
 offset_left = -8.0
 offset_top = 12.0
 offset_right = 8.0

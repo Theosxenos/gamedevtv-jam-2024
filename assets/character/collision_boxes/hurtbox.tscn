@@ -8,3 +8,8 @@ collision_mask = 0
 script = ExtResource("1_dpl5q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

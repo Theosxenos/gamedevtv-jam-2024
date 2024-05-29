@@ -3,7 +3,7 @@ class_name Player extends CharacterBody2D
 signal died
 
 @export_category("Player Stats")
-@export var health := 100.0
+@export var health := 100.0 : set = _set_health
 @export var max_health := 100.0
 @export var speed := 45.0
 
@@ -23,11 +23,15 @@ func _physics_process(_delta: float) -> void:
 
 func _on_hurtbox_hit(attack: Attack) -> void:
 	health -= attack.damage
-	if health <= 0:
-		die()
-	
-	health_bar.value = health / max_health
 
 	
 func die() -> void:
 	died.emit()
+
+	
+func _set_health(value: float) -> void:
+	health = value
+	if health <= 0:
+		die()
+
+	health_bar.value = health / max_health
