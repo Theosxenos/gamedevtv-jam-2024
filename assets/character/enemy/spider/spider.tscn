@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfggj67xh1hcv"]
+
+[ext_resource type="Texture2D" uid="uid://b2y5n1c731bqu" path="res://assets/character/enemy/spider/tile_0122.png" id="1_f4ohm"]
+[ext_resource type="Script" path="res://src/spider.gd" id="1_mio35"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nnrwy"]
+radius = 2.0
+height = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ihvx0"]
+radius = 100.0
+
+[node name="Spider" type="CharacterBody2D"]
+script = ExtResource("1_mio35")
+knockback_friction = 25
+state = 4
+
+[node name="CharacterSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_f4ohm")
+
+[node name="Feet" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_nnrwy")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ihvx0")
+
+[node name="RecoverTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="RecoverTimer" to="." method="_on_recover_timer_timeout"]

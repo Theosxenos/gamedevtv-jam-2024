@@ -15,8 +15,12 @@ func _ready() -> void:
 	level_spawn_positions["Doors"] = []
 	for p: Marker2D in %Doors.get_children():
 		level_spawn_positions["Doors"].append(p.global_position)
-	
-	
+		
+	level_spawn_positions["Corners"] = []
+	for p: Marker2D in %Corners.get_children():
+		level_spawn_positions["Corners"].append(p.global_position)
+
+
 func _process(delta: float) -> void:
 	_game_time += delta
 	
@@ -48,6 +52,8 @@ func spawn_wave(spawn: SpawnInfo) -> void:
 	var spawn_points: Array = []
 	if spawn.spawn_place == spawn.SpawnPlaces.DOORS:
 		spawn_points = level_spawn_positions["Doors"]
+	elif spawn.spawn_place == spawn.SpawnPlaces.CORNERS:
+		spawn_points = level_spawn_positions["Corners"]
 	
 	for i in spawn.spawn_amount:
 		spawn_enemy(spawn.enemy_scene, spawn_points)

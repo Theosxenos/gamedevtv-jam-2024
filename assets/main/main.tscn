@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bwsligumeeoci"]
+[gd_scene load_steps=27 format=3 uid="uid://bwsligumeeoci"]
 
 [ext_resource type="PackedScene" uid="uid://dt0oureqbcp7n" path="res://assets/hud/hud.tscn" id="1_544d6"]
 [ext_resource type="Texture2D" uid="uid://dv81qe7btwu03" path="res://assets/tilemap/tilemap.png" id="1_h07t4"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://src/spawn_info.gd" id="5_gp5sm"]
 [ext_resource type="Resource" uid="uid://du2uj3x3odf3f" path="res://assets/main/cyclops_spawn.tres" id="6_1cfa0"]
 [ext_resource type="Resource" uid="uid://bgsiq2wfcc5b7" path="res://assets/main/ratpack_spawn.tres" id="7_8dg4t"]
+[ext_resource type="PackedScene" uid="uid://dfggj67xh1hcv" path="res://assets/character/enemy/spider/spider.tscn" id="14_dciql"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qmyd1"]
 texture = ExtResource("1_h07t4")
@@ -272,6 +273,16 @@ sources/2 = SubResource("TileSetAtlasSource_ytio8")
 sources/3 = SubResource("TileSetAtlasSource_nj0xe")
 sources/1 = SubResource("TileSetAtlasSource_a5yh6")
 
+[sub_resource type="Resource" id="Resource_344wc"]
+script = ExtResource("5_gp5sm")
+enemy_scene = ExtResource("14_dciql")
+time_start = 0.0
+time_stop = 4.0
+continous = false
+spawn_amount = 2
+wave_interval = 1.0
+spawn_place = 1
+
 [node name="Main" type="Node"]
 script = ExtResource("1_tls33")
 
@@ -338,12 +349,13 @@ tile_set = SubResource("TileSet_0kmrt")
 format = 2
 layer_0/tile_data = PackedInt32Array(65550, 1, 0, 65551, 1, 268435456)
 
-[node name="Player" parent="Level" instance=ExtResource("3_0rlpb")]
+[node name="Player" parent="Level" node_paths=PackedStringArray("health_bar") instance=ExtResource("3_0rlpb")]
 position = Vector2(240, 144)
+health_bar = NodePath("ProgressBars/HealthBar")
 
 [node name="EnemySpawner" type="Node2D" parent="Level"]
 script = ExtResource("5_2tuqx")
-spawns = Array[ExtResource("5_gp5sm")]([ExtResource("6_1cfa0"), ExtResource("7_8dg4t")])
+spawns = Array[ExtResource("5_gp5sm")]([SubResource("Resource_344wc"), ExtResource("6_1cfa0"), ExtResource("7_8dg4t")])
 metadata/_edit_group_ = true
 
 [node name="SpawnPositions" type="Node2D" parent="Level/EnemySpawner"]
@@ -368,6 +380,21 @@ position = Vector2(25, 144)
 
 [node name="Right" type="Marker2D" parent="Level/EnemySpawner/SpawnPositions/Doors"]
 position = Vector2(456, 144)
+
+[node name="Corners" type="Node2D" parent="Level/EnemySpawner/SpawnPositions"]
+unique_name_in_owner = true
+
+[node name="TopLeft" type="Marker2D" parent="Level/EnemySpawner/SpawnPositions/Corners"]
+position = Vector2(32, 48)
+
+[node name="TopRight" type="Marker2D" parent="Level/EnemySpawner/SpawnPositions/Corners"]
+position = Vector2(448, 48)
+
+[node name="BottomLeft" type="Marker2D" parent="Level/EnemySpawner/SpawnPositions/Corners"]
+position = Vector2(32, 240)
+
+[node name="BottomRight" type="Marker2D" parent="Level/EnemySpawner/SpawnPositions/Corners"]
+position = Vector2(448, 240)
 
 [connection signal="died" from="Level/Player" to="." method="_on_player_died"]
 [connection signal="enemy_spawned" from="Level/EnemySpawner" to="." method="_on_enemy_spawner_enemy_spawned"]
