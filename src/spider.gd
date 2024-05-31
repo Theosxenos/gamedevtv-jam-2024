@@ -1,53 +1,52 @@
-class_name Spider extends Enemy
-
+class_name SpiderEnemy extends Enemy
 
 @export var jump_speed := 60
+@export var retreat_distance := 150
 
-var _pounce_target: Vector2
-	
-func _physics_process(delta: float) -> void:
-	if state == EnemyState.POUNCE:
-		state = EnemyState.POUNCING
-		_pounce()
-		
-	elif state == EnemyState.POUNCING:
-		var direction: Vector2 = global_position.direction_to(_pounce_target)
-		velocity = direction * jump_speed
-		move_and_slide()
-		
-		var distance := global_position.distance_to(_pounce_target)
-		if distance < 50:
-			var _tween: Tween = create_tween()
-			_tween.tween_property(character_sprite, "scale", Vector2(1, 1), 1.25)
-		if distance <= 1:
-			state = EnemyState.IDLE
-			$RecoverTimer.start()
-		
-	elif state == EnemyState.IDLE:
-		velocity = Vector2.ZERO
-	
-	else:
-		super._physics_process(delta)
+var pounce_target: Vector2
 
-	
-func _pounce() -> void:
-	_pounce_target = _player.global_position
-	
-	if global_position.distance_to(_pounce_target) < 5:
-		state = EnemyState.MOVE
-		return
-	
-	$Area2D.set_deferred("monitoring", false)
-	
-	var _tween: Tween = create_tween()
-	_tween.tween_property(character_sprite, "scale", Vector2(1.5, 1.5), 1.25)
-	state = EnemyState.POUNCING
+@onready var recover_timer: Timer = $RecoverTimer
 
+func tween_sprite() -> void:
+	var tween: Tween = create_tween()
+	tween.tween_property(character_sprite, "scale", Vector2(1.5, 1.5), 1.25)
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is Player:
-		state = EnemyState.POUNCE
+#func handle_start_pounce_state() -> void:
+#	_
+#	state = SpiderState.POUNCING
+#
+#	var direction: Vector2 = global_position.direction_to(_pounce_target)
+#	velocity = direction * jump_speed
+#
 
-
-func _on_recover_timer_timeout() -> void:
-	$Area2D.set_deferred("monitoring", true)	
+#
+#func handle_pouncing_state() -> void:
+#	var pounce_target_distance := global_position.distance_to(_pounce_target)
+#	if pounce_target_distance < 50:
+#		state = SpiderState.END_POUNCE
+#
+#	move_and_slide()
+#
+#func handle_end_pounce_state() -> void:
+#	var pounce_target_distance := global_position.distance_to(_pounce_target)
+#
+#	var tween: Tween = create_tween()
+#	tween.tween_property(character_sprite, "scale", Vector2(1, 1), 1.25)
+#
+#	if pounce_target_distance <= 1:
+#		state = SpiderState.IDLE
+#		recover_timer.start()
+#
+#func handle_retreat_state() -> void:
+#	var direction: Vector2 = global_position.direction_to(_player.global_position).normalized()
+#	velocity = -direction * jump_speed
+#
+#	if global_position.distance_to(_player.global_position) >= retreat_distance:
+#		velocity = Vector2.ZERO
+#		state = SpiderState.MOVE
+#
+#func handle_idle_state() -> void:
+#	velocity = Vector2.ZERO
+#
+#func _on_recover_timer_timeout() -> void:
+#	state = SpiderState.RETREAT

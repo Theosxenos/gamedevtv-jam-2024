@@ -18,7 +18,7 @@ height = 12.0
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_mio35")
-knockback_friction = 25
+_state = 2
 
 [node name="CharacterSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_f4ohm")
@@ -35,8 +35,9 @@ one_shot = true
 script = ExtResource("3_a6d0j")
 current_state = NodePath("Move")
 
-[node name="Move" type="Node" parent="StateMachine"]
+[node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("spider")]
 script = ExtResource("4_waisl")
+spider = NodePath("../..")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("5_q40d1")
@@ -44,11 +45,15 @@ script = ExtResource("5_q40d1")
 [node name="Knockback" type="Node" parent="StateMachine"]
 script = ExtResource("6_csht4")
 
-[node name="StartPounce" type="Node" parent="StateMachine"]
+[node name="StartPounce" type="Node" parent="StateMachine" node_paths=PackedStringArray("spider", "character_sprite")]
 script = ExtResource("7_vik7v")
+spider = NodePath("../..")
+character_sprite = NodePath("../../CharacterSprite")
 
-[node name="EndPounce" type="Node" parent="StateMachine"]
+[node name="EndPounce" type="Node" parent="StateMachine" node_paths=PackedStringArray("spider", "character_sprite")]
 script = ExtResource("8_wn6ag")
+spider = NodePath("../..")
+character_sprite = NodePath("../../CharacterSprite")
 
 [node name="Retreat" type="Node" parent="StateMachine"]
 script = ExtResource("9_tgkcj")
