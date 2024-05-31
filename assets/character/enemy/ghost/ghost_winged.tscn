@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0p33ykhohluc"]
+
+[ext_resource type="Script" path="res://src/ghost_winged.gd" id="1_o2kgr"]
+[ext_resource type="PackedScene" uid="uid://b0cr08h42k7un" path="res://assets/character/enemy/ghost/ghost.tscn" id="2_b36rh"]
+
+[node name="GhostWinged" type="Node2D"]
+position = Vector2(50, 100)
+script = ExtResource("1_o2kgr")
+enemy_scene = ExtResource("2_b36rh")
+spacing = 20.0
+wing_angle = 45.0

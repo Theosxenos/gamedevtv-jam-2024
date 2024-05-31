@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0cr08h42k7un"]
+
+[ext_resource type="Texture2D" uid="uid://cf2h8efj1m0qg" path="res://assets/character/enemy/ghost/tile_0121.png" id="1_bbraj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m4ebc"]
+radius = 2.0
+height = 12.0
+
+[node name="Ghost" type="CharacterBody2D"]
+
+[node name="CharacterSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_bbraj")
+
+[node name="Feet" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_m4ebc")
