@@ -1,19 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfggj67xh1hcv"]
+[gd_scene load_steps=11 format=3 uid="uid://dfggj67xh1hcv"]
 
 [ext_resource type="Texture2D" uid="uid://b2y5n1c731bqu" path="res://assets/character/enemy/spider/tile_0122.png" id="1_f4ohm"]
 [ext_resource type="Script" path="res://src/spider.gd" id="1_mio35"]
+[ext_resource type="Script" path="res://src/state_machine.gd" id="3_a6d0j"]
+[ext_resource type="Script" path="res://src/spider_move_state.gd" id="4_waisl"]
+[ext_resource type="Script" path="res://src/spider_idle_state.gd" id="5_q40d1"]
+[ext_resource type="Script" path="res://src/spider_knockback_state.gd" id="6_csht4"]
+[ext_resource type="Script" path="res://src/spider_start_pounce_state.gd" id="7_vik7v"]
+[ext_resource type="Script" path="res://src/spider_end_pounce_state.gd" id="8_wn6ag"]
+[ext_resource type="Script" path="res://src/spider_retreat_state.gd" id="9_tgkcj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nnrwy"]
 radius = 2.0
 height = 12.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ihvx0"]
-radius = 100.0
-
 [node name="Spider" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_mio35")
 knockback_friction = 25
-state = 4
 
 [node name="CharacterSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_f4ohm")
@@ -23,15 +28,29 @@ position = Vector2(0, 5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_nnrwy")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_ihvx0")
-
 [node name="RecoverTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("3_a6d0j")
+current_state = NodePath("Move")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("4_waisl")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("5_q40d1")
+
+[node name="Knockback" type="Node" parent="StateMachine"]
+script = ExtResource("6_csht4")
+
+[node name="StartPounce" type="Node" parent="StateMachine"]
+script = ExtResource("7_vik7v")
+
+[node name="EndPounce" type="Node" parent="StateMachine"]
+script = ExtResource("8_wn6ag")
+
+[node name="Retreat" type="Node" parent="StateMachine"]
+script = ExtResource("9_tgkcj")
+
 [connection signal="timeout" from="RecoverTimer" to="." method="_on_recover_timer_timeout"]
