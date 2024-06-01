@@ -28,7 +28,7 @@ func _input(_event: InputEvent) -> void:
 	
 
 func _physics_process(_delta: float) -> void:
-	var enemies: Array[Node2D] = get_overlapping_bodies()
+	var enemies: Array[Area2D] = get_overlapping_areas()
 	_enemy_position = enemies[0].global_position if enemies.size() > 0 else Vector2.ZERO
 	
 
