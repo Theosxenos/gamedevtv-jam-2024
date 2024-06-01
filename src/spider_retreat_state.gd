@@ -21,9 +21,9 @@ func physics_process_state(_delta: float) -> void:
 
 func get_random_direction() -> Vector2:
 	# Generate a random angle in radians
-	var random_angle = randf() * TAU  # TAU is 2 * PI
+	var random_angle := randf() * TAU  # TAU is 2 * PI
 	# Convert the angle to a direction vector
-	var direction = Vector2(cos(random_angle), sin(random_angle))
+	var direction := Vector2(cos(random_angle), sin(random_angle))
 	return direction
 
 
