@@ -17,6 +17,10 @@ height = 12.0
 [node name="Spider" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 7
+slide_on_ceiling = false
+platform_on_leave = 2
+platform_floor_layers = 4294967168
+platform_wall_layers = 1
 script = ExtResource("1_mio35")
 _state = 2
 
@@ -39,8 +43,14 @@ current_state = NodePath("Move")
 script = ExtResource("4_waisl")
 spider = NodePath("../..")
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("spider")]
 script = ExtResource("5_q40d1")
+spider = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="StateMachine/Idle"]
+process_mode = 3
+wait_time = 0.3
+one_shot = true
 
 [node name="Knockback" type="Node" parent="StateMachine"]
 script = ExtResource("6_csht4")
@@ -55,7 +65,9 @@ script = ExtResource("8_wn6ag")
 spider = NodePath("../..")
 character_sprite = NodePath("../../CharacterSprite")
 
-[node name="Retreat" type="Node" parent="StateMachine"]
+[node name="Retreat" type="Node" parent="StateMachine" node_paths=PackedStringArray("spider")]
 script = ExtResource("9_tgkcj")
+spider = NodePath("../..")
 
 [connection signal="timeout" from="RecoverTimer" to="." method="_on_recover_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Idle/Timer" to="StateMachine/Idle" method="_on_timer_timeout"]
