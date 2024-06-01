@@ -4,6 +4,8 @@ extends BaseState
 @export var character_sprite: Sprite2D
 
 @onready var feet: CollisionShape2D = $"../../Feet"
+@onready var hurtbox_collision: CollisionShape2D = $"../../Hurtbox/CollisionShape2D"
+
 
 func enter_state() -> void:
 	process_mode = Node.PROCESS_MODE_INHERIT
@@ -27,3 +29,4 @@ func physics_process_state(_delta: float) -> void:
 func exit_state() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
 	feet.set_deferred("disabled", false)
+	hurtbox_collision.set_deferred("disabled", false)

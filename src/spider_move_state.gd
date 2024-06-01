@@ -16,7 +16,7 @@ func physics_process_state(_delta: float) -> void:
 	if distance_to_player >= 95 and distance_to_player <= 105:
 		state_machine.switch_state(state_machine.states.StartPounce)
 	elif distance_to_player < 95:
-		pass
+		state_machine.switch_state(state_machine.states.Retreat)
 	else:
 		var direction: Vector2 = spider.global_position.direction_to(player.global_position)
 		spider.velocity = direction * spider.speed

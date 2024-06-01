@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfggj67xh1hcv"]
+[gd_scene load_steps=17 format=3 uid="uid://dfggj67xh1hcv"]
 
 [ext_resource type="Texture2D" uid="uid://b2y5n1c731bqu" path="res://assets/character/enemy/spider/tile_0122.png" id="1_f4ohm"]
 [ext_resource type="Script" path="res://src/spider.gd" id="1_mio35"]
@@ -9,10 +9,25 @@
 [ext_resource type="Script" path="res://src/spider_start_pounce_state.gd" id="7_vik7v"]
 [ext_resource type="Script" path="res://src/spider_end_pounce_state.gd" id="8_wn6ag"]
 [ext_resource type="Script" path="res://src/spider_retreat_state.gd" id="9_tgkcj"]
+[ext_resource type="PackedScene" uid="uid://dxtpu4xnm6eo0" path="res://assets/character/collision_boxes/hurtbox.tscn" id="10_mrlhy"]
+[ext_resource type="PackedScene" uid="uid://ywe63a87v137" path="res://assets/character/collision_boxes/hitbox.tscn" id="11_cytek"]
+[ext_resource type="Script" path="res://src/attack.gd" id="12_6mjfd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nnrwy"]
 radius = 2.0
 height = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_td8y2"]
+radius = 8.0
+
+[sub_resource type="Resource" id="Resource_x22kd"]
+script = ExtResource("12_6mjfd")
+damage = 2
+knockback_force = 0.0
+stun_duration = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sypkf"]
+radius = 7.0
 
 [node name="Spider" type="CharacterBody2D"]
 collision_layer = 4
@@ -22,6 +37,8 @@ platform_on_leave = 2
 platform_floor_layers = 4294967168
 platform_wall_layers = 1
 script = ExtResource("1_mio35")
+health = 3
+knockback_friction = 25
 _state = 2
 
 [node name="CharacterSprite" type="Sprite2D" parent="."]
@@ -52,8 +69,9 @@ process_mode = 3
 wait_time = 0.3
 one_shot = true
 
-[node name="Knockback" type="Node" parent="StateMachine"]
+[node name="Knockback" type="Node" parent="StateMachine" node_paths=PackedStringArray("spider")]
 script = ExtResource("6_csht4")
+spider = NodePath("../..")
 
 [node name="StartPounce" type="Node" parent="StateMachine" node_paths=PackedStringArray("spider", "character_sprite")]
 script = ExtResource("7_vik7v")
@@ -65,9 +83,31 @@ script = ExtResource("8_wn6ag")
 spider = NodePath("../..")
 character_sprite = NodePath("../../CharacterSprite")
 
-[node name="Retreat" type="Node" parent="StateMachine" node_paths=PackedStringArray("spider")]
+[node name="Retreat" type="Node" parent="StateMachine" node_paths=PackedStringArray("spider", "feet")]
 script = ExtResource("9_tgkcj")
 spider = NodePath("../..")
+feet = NodePath("../../Feet")
 
-[connection signal="timeout" from="RecoverTimer" to="." method="_on_recover_timer_timeout"]
+[node name="Hurtbox" parent="." instance=ExtResource("10_mrlhy")]
+collision_layer = 64
+monitoring = false
+invincibility_duration = 0.3
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("CircleShape2D_td8y2")
+debug_color = Color(0, 0.6, 0.356863, 0.419608)
+
+[node name="Hitbox" parent="." instance=ExtResource("11_cytek")]
+collision_layer = 16
+collision_mask = 32
+attack = SubResource("Resource_x22kd")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_sypkf")
+debug_color = Color(0.913725, 0.2, 0.286275, 0.419608)
+
 [connection signal="timeout" from="StateMachine/Idle/Timer" to="StateMachine/Idle" method="_on_timer_timeout"]
+[connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

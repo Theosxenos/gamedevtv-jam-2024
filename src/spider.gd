@@ -5,48 +5,13 @@ class_name SpiderEnemy extends Enemy
 
 var pounce_target: Vector2
 
-@onready var recover_timer: Timer = $RecoverTimer
+@onready var state_machine: StateMachine = $StateMachine
 
-func tween_sprite() -> void:
-	var tween: Tween = create_tween()
-	tween.tween_property(character_sprite, "scale", Vector2(1.5, 1.5), 1.25)
-
-#func handle_start_pounce_state() -> void:
-#	_
-#	state = SpiderState.POUNCING
-#
-#	var direction: Vector2 = global_position.direction_to(_pounce_target)
-#	velocity = direction * jump_speed
-#
-
-#
-#func handle_pouncing_state() -> void:
-#	var pounce_target_distance := global_position.distance_to(_pounce_target)
-#	if pounce_target_distance < 50:
-#		state = SpiderState.END_POUNCE
-#
-#	move_and_slide()
-#
-#func handle_end_pounce_state() -> void:
-#	var pounce_target_distance := global_position.distance_to(_pounce_target)
-#
-#	var tween: Tween = create_tween()
-#	tween.tween_property(character_sprite, "scale", Vector2(1, 1), 1.25)
-#
-#	if pounce_target_distance <= 1:
-#		state = SpiderState.IDLE
-#		recover_timer.start()
-#
-#func handle_retreat_state() -> void:
-#	var direction: Vector2 = global_position.direction_to(_player.global_position).normalized()
-#	velocity = -direction * jump_speed
-#
-#	if global_position.distance_to(_player.global_position) >= retreat_distance:
-#		velocity = Vector2.ZERO
-#		state = SpiderState.MOVE
-#
-#func handle_idle_state() -> void:
-#	velocity = Vector2.ZERO
-#
-#func _on_recover_timer_timeout() -> void:
-#	state = SpiderState.RETREAT
+func _on_hurtbox_hit(attack: Attack) -> void:
+	health -= attack.damage
+	
+	if attack.knockback_force > 0:
+		var knockback_direction := global_position.direction_to(_player.global_position) * -1
+		velocity = knockback_direction * attack.knockback_force
+		
+		state_machine.switch_state(state_machine.states.Knockback)
