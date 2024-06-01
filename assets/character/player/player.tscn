@@ -66,6 +66,7 @@ value = 1.0
 show_percentage = false
 
 [node name="XpBar" type="ProgressBar" parent="ProgressBars"]
+visible = false
 layout_mode = 0
 offset_left = -8.0
 offset_top = 12.0

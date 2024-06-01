@@ -11,8 +11,8 @@
 [ext_resource type="Script" path="res://src/enemy_spawner.gd" id="5_2tuqx"]
 [ext_resource type="Texture2D" uid="uid://bvrlvc2ci5cw1" path="res://assets/hud/score_board_mid.png" id="5_05w0n"]
 [ext_resource type="Script" path="res://src/spawn_info.gd" id="5_gp5sm"]
-[ext_resource type="Resource" uid="uid://du2uj3x3odf3f" path="res://assets/main/cyclops_spawn.tres" id="6_1cfa0"]
-[ext_resource type="Resource" uid="uid://bgsiq2wfcc5b7" path="res://assets/main/ratpack_spawn.tres" id="7_8dg4t"]
+[ext_resource type="Resource" uid="uid://du2uj3x3odf3f" path="res://assets/main/cyclops_spawn.tres" id="13_wo1xn"]
+[ext_resource type="Resource" uid="uid://bgsiq2wfcc5b7" path="res://assets/main/ratpack_spawn.tres" id="14_78cg6"]
 [ext_resource type="PackedScene" uid="uid://dfggj67xh1hcv" path="res://assets/character/enemy/spider/spider.tscn" id="14_dciql"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qmyd1"]
@@ -276,11 +276,11 @@ sources/1 = SubResource("TileSetAtlasSource_a5yh6")
 [sub_resource type="Resource" id="Resource_344wc"]
 script = ExtResource("5_gp5sm")
 enemy_scene = ExtResource("14_dciql")
-time_start = 0.0
-time_stop = 4.0
+time_start = 6.0
+time_stop = 12.0
 continous = false
-spawn_amount = 2
-wave_interval = 1.0
+spawn_amount = 1
+wave_interval = 2.0
 spawn_place = 1
 
 [node name="Main" type="Node"]
@@ -351,11 +351,13 @@ layer_0/tile_data = PackedInt32Array(65550, 1, 0, 65551, 1, 268435456)
 
 [node name="Player" parent="Level" node_paths=PackedStringArray("health_bar") instance=ExtResource("3_0rlpb")]
 position = Vector2(240, 144)
+health = 50.0
+max_health = 50.0
 health_bar = NodePath("ProgressBars/HealthBar")
 
 [node name="EnemySpawner" type="Node2D" parent="Level"]
 script = ExtResource("5_2tuqx")
-spawns = Array[ExtResource("5_gp5sm")]([SubResource("Resource_344wc"), ExtResource("6_1cfa0"), ExtResource("7_8dg4t")])
+spawns = Array[ExtResource("5_gp5sm")]([SubResource("Resource_344wc"), ExtResource("13_wo1xn"), ExtResource("14_78cg6")])
 metadata/_edit_group_ = true
 
 [node name="SpawnPositions" type="Node2D" parent="Level/EnemySpawner"]
