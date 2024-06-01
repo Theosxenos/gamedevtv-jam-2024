@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://bwsligumeeoci"]
+[gd_scene load_steps=28 format=3 uid="uid://bwsligumeeoci"]
 
 [ext_resource type="PackedScene" uid="uid://dt0oureqbcp7n" path="res://assets/hud/hud.tscn" id="1_544d6"]
 [ext_resource type="Texture2D" uid="uid://dv81qe7btwu03" path="res://assets/tilemap/tilemap.png" id="1_h07t4"]
 [ext_resource type="Script" path="res://src/main.gd" id="1_tls33"]
 [ext_resource type="Texture2D" uid="uid://di26kyrql7biv" path="res://assets/background/tile_0042_transparent.png" id="2_b4et5"]
+[ext_resource type="PackedScene" uid="uid://d2toxc22vijk2" path="res://assets/game_over/game_over.tscn" id="2_n80pv"]
 [ext_resource type="PackedScene" uid="uid://0qxp2qd8ydf2" path="res://assets/character/player/player.tscn" id="3_0rlpb"]
 [ext_resource type="Texture2D" uid="uid://caq6medp4s8so" path="res://assets/hud/score_board_left.png" id="3_ljl2p"]
 [ext_resource type="Texture2D" uid="uid://dv74xdlg1ult6" path="res://assets/hud/score_board_right.png" id="4_bvpic"]
@@ -285,6 +286,7 @@ spawn_place = 1
 
 [node name="Main" type="Node"]
 script = ExtResource("1_tls33")
+game_over_scene = ExtResource("2_n80pv")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
