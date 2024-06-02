@@ -1,21 +1,74 @@
-[gd_scene load_steps=29 format=4 uid="uid://bwsligumeeoci"]
+[gd_scene load_steps=37 format=4 uid="uid://bwsligumeeoci"]
 
 [ext_resource type="PackedScene" uid="uid://dt0oureqbcp7n" path="res://assets/hud/hud.tscn" id="1_544d6"]
 [ext_resource type="Texture2D" uid="uid://dv81qe7btwu03" path="res://assets/tilemap/tilemap.png" id="1_h07t4"]
 [ext_resource type="Script" path="res://src/main.gd" id="1_tls33"]
 [ext_resource type="Texture2D" uid="uid://di26kyrql7biv" path="res://assets/background/tile_0042_transparent.png" id="2_b4et5"]
-[ext_resource type="PackedScene" uid="uid://d2toxc22vijk2" path="res://assets/game_over/game_over.tscn" id="2_n80pv"]
 [ext_resource type="PackedScene" uid="uid://0qxp2qd8ydf2" path="res://assets/character/player/player.tscn" id="3_0rlpb"]
 [ext_resource type="Texture2D" uid="uid://caq6medp4s8so" path="res://assets/hud/score_board_left.png" id="3_ljl2p"]
+[ext_resource type="FontFile" uid="uid://dyd7gtydcova4" path="res://assets/ui/PressStart2P-Regular.ttf" id="4_50ci8"]
 [ext_resource type="Texture2D" uid="uid://dv74xdlg1ult6" path="res://assets/hud/score_board_right.png" id="4_bvpic"]
 [ext_resource type="Texture2D" uid="uid://ceajj8yxxmb4d" path="res://assets/hud/tile_0045.png" id="4_il05x"]
 [ext_resource type="Script" path="res://src/enemy_spawner.gd" id="5_2tuqx"]
 [ext_resource type="Texture2D" uid="uid://bvrlvc2ci5cw1" path="res://assets/hud/score_board_mid.png" id="5_05w0n"]
 [ext_resource type="PackedScene" uid="uid://crb33h5h3tyyw" path="res://assets/ui/ui_tile_map.tscn" id="5_27wip"]
+[ext_resource type="Texture2D" uid="uid://c8ya4o1q0py6l" path="res://assets/ui/button_small.png" id="5_akovg"]
 [ext_resource type="Script" path="res://src/spawn_info.gd" id="5_gp5sm"]
+[ext_resource type="Texture2D" uid="uid://fi3thnk8suto" path="res://assets/ui/button_small_hover.png" id="6_8f4li"]
 [ext_resource type="Resource" uid="uid://du2uj3x3odf3f" path="res://assets/main/cyclops_spawn.tres" id="13_wo1xn"]
 [ext_resource type="Resource" uid="uid://bgsiq2wfcc5b7" path="res://assets/main/ratpack_spawn.tres" id="14_78cg6"]
 [ext_resource type="PackedScene" uid="uid://dfggj67xh1hcv" path="res://assets/character/enemy/spider/spider.tscn" id="14_dciql"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_olbl2"]
+load_path = "res://.godot/imported/panel_border.png-d931c793e9fd41502c3ee1025b882ab1.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iq5qg"]
+content_margin_left = 7.0
+content_margin_top = 7.0
+content_margin_right = 7.0
+content_margin_bottom = 6.0
+texture = SubResource("CompressedTexture2D_olbl2")
+texture_margin_left = 50.0
+texture_margin_top = 50.0
+texture_margin_right = 50.0
+texture_margin_bottom = 50.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bgvxx"]
+load_path = "res://.godot/imported/panel_fill.png-afba170071b4ec847dd66df68b0976c8.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4s1cy"]
+texture = SubResource("CompressedTexture2D_bgvxx")
+texture_margin_left = 50.0
+texture_margin_top = 50.0
+texture_margin_right = 50.0
+texture_margin_bottom = 50.0
+region_rect = Rect2(4, 4, 88, 88)
+
+[sub_resource type="PackedScene" id="PackedScene_tbyji"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("BoardPanelGraphic", "Control", "layout_mode", "anchors_preset", "anchor_right", "anchor_bottom", "grow_horizontal", "grow_vertical", "BackgroundLight", "ColorRect", "visible", "layout_mode", "anchors_preset", "anchor_right", "anchor_bottom", "grow_horizontal", "grow_vertical", "color", "BackgroundDark", "ColorRect", "layout_mode", "anchors_preset", "anchor_right", "anchor_bottom", "grow_horizontal", "grow_vertical", "color", "OuterPanel", "PanelContainer", "layout_mode", "anchors_preset", "anchor_right", "anchor_bottom", "grow_horizontal", "grow_vertical", "theme_override_styles/panel", "InnerPanel", "PanelContainer", "layout_mode", "anchors_preset", "anchor_right", "anchor_bottom", "offset_left", "offset_top", "offset_right", "offset_bottom", "grow_horizontal", "grow_vertical", "theme_override_styles/panel"),
+"node_count": 5,
+"node_paths": [NodePath("."), NodePath("."), NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 6, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 7, 5, 0, 1073741824, 0, 9, 8, -1, 8, 10, 6, 11, 7, 12, 8, 13, 9, 14, 10, 15, 11, 16, 12, 17, 13, 0, 1073741825, 0, 19, 18, -1, 7, 20, 14, 21, 15, 22, 16, 23, 17, 24, 18, 25, 19, 26, 20, 0, 1073741826, 0, 28, 27, -1, 7, 29, 21, 30, 22, 31, 23, 32, 24, 33, 25, 34, 26, 35, 27, 0, 1073741827, 0, 37, 36, -1, 11, 38, 28, 39, 29, 40, 30, 41, 31, 42, 32, 43, 33, 44, 34, 45, 35, 46, 36, 47, 37, 48, 38, 0),
+"variants": [3, 15, 1.0, 1.0, 2, 2, false, 1, 15, 1.0, 1.0, 2, 2, Color(0.917647, 0.831373, 0.666667, 1), 1, 15, 1.0, 1.0, 2, 2, Color(0.227451, 0.266667, 0.4, 1), 1, 15, 1.0, 1.0, 2, 2, SubResource("StyleBoxTexture_iq5qg"), 1, 15, 1.0, 1.0, 32.0, 32.0, -32.0, -28.0, 2, 2, SubResource("StyleBoxTexture_4s1cy")],
+"version": 3
+}
+
+[sub_resource type="PackedScene" id="PackedScene_ij2xw"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("GameOver", "Control", "layout_mode", "anchors_preset", "anchor_right", "anchor_bottom", "grow_horizontal", "grow_vertical", "BoardPanelGraphic", "layout_mode", "Label", "Label", "layout_mode", "anchors_preset", "anchor_left", "anchor_top", "anchor_right", "anchor_bottom", "offset_left", "offset_top", "offset_right", "offset_bottom", "grow_horizontal", "grow_vertical", "theme_override_colors/font_color", "theme_override_font_sizes/font_size", "text"),
+"node_count": 3,
+"node_paths": [NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 6, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 7, 5, 0, 1073741824, 0, 2147483647, 8, 6, 1, 9, 7, 0, 1073741825, 0, 11, 10, -1, 15, 12, 8, 13, 9, 14, 10, 15, 11, 16, 12, 17, 13, 18, 14, 19, 15, 20, 16, 21, 17, 22, 18, 23, 19, 24, 20, 25, 21, 26, 22, 0),
+"variants": [3, 15, 1.0, 1.0, 2, 2, SubResource("PackedScene_tbyji"), 1, 1, 8, 0.5, 0.5, 0.5, 0.5, -0.5, -11.5, 0.5, 11.5, 2, 2, Color(0, 0, 0, 1), 32, "Game Over"],
+"version": 3
+}
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qmyd1"]
 texture = ExtResource("1_h07t4")
@@ -287,7 +340,7 @@ spawn_place = 1
 
 [node name="Main" type="Node"]
 script = ExtResource("1_tls33")
-game_over_scene = ExtResource("2_n80pv")
+game_over_scene = SubResource("PackedScene_ij2xw")
 metadata/_edit_horizontal_guides_ = [8.0, 261.0]
 metadata/_edit_vertical_guides_ = [140.0, 340.0]
 
@@ -297,7 +350,8 @@ metadata/_edit_vertical_guides_ = [140.0, 340.0]
 unique_name_in_owner = true
 score_label = NodePath("ScoreLabel")
 
-[node name="Control" type="Control" parent="UI"]
+[node name="Dialog" type="Control" parent="UI"]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -305,7 +359,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="UI/Control"]
+[node name="ColorRect" type="ColorRect" parent="UI/Dialog"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -314,8 +368,88 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.588235)
 
-[node name="UiTileMap" parent="UI/Control" instance=ExtResource("5_27wip")]
+[node name="UiTileMap" parent="UI/Dialog" instance=ExtResource("5_27wip")]
 position = Vector2(140, 10)
+
+[node name="MainMenu" type="Control" parent="UI/Dialog"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 151.0
+offset_top = 19.0
+offset_right = -152.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="UI/Dialog/MainMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.5
+offset_top = 27.0
+offset_right = 64.5
+offset_bottom = 43.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_50ci8")
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/Dialog/MainMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -53.5
+offset_top = 44.0
+offset_right = 53.5
+offset_bottom = 68.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "WSAD - Move"
+
+[node name="PlayButton" type="TextureButton" parent="UI/Dialog/MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.5
+offset_top = 2.0
+offset_right = 30.5
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_akovg")
+texture_hover = ExtResource("6_8f4li")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="UI/Dialog/MainMenu/PlayButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -11.5
+offset_right = 40.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_50ci8")
+theme_override_font_sizes/font_size = 12
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Level" type="Node2D" parent="."]
 process_mode = 4
@@ -431,5 +565,6 @@ position = Vector2(32, 240)
 [node name="BottomRight" type="Marker2D" parent="Level/EnemySpawner/SpawnPositions/Corners"]
 position = Vector2(448, 240)
 
+[connection signal="pressed" from="UI/Dialog/MainMenu/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="died" from="Level/Player" to="." method="_on_player_died"]
 [connection signal="enemy_spawned" from="Level/EnemySpawner" to="." method="_on_enemy_spawner_enemy_spawned"]

@@ -17,3 +17,9 @@ func _on_enemy_spawner_enemy_spawned(enemy) -> void:
 func _on_player_died() -> void:
 	get_tree().root.add_child(game_over_scene.instantiate())
 	queue_free()
+
+
+func _on_play_button_pressed() -> void:
+	%MainMenu.queue_free()
+	%Dialog.hide()
+	$Level.process_mode = Node.PROCESS_MODE_INHERIT
