@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bwsligumeeoci"]
+[gd_scene load_steps=29 format=4 uid="uid://bwsligumeeoci"]
 
 [ext_resource type="PackedScene" uid="uid://dt0oureqbcp7n" path="res://assets/hud/hud.tscn" id="1_544d6"]
 [ext_resource type="Texture2D" uid="uid://dv81qe7btwu03" path="res://assets/tilemap/tilemap.png" id="1_h07t4"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ceajj8yxxmb4d" path="res://assets/hud/tile_0045.png" id="4_il05x"]
 [ext_resource type="Script" path="res://src/enemy_spawner.gd" id="5_2tuqx"]
 [ext_resource type="Texture2D" uid="uid://bvrlvc2ci5cw1" path="res://assets/hud/score_board_mid.png" id="5_05w0n"]
+[ext_resource type="PackedScene" uid="uid://crb33h5h3tyyw" path="res://assets/ui/ui_tile_map.tscn" id="5_27wip"]
 [ext_resource type="Script" path="res://src/spawn_info.gd" id="5_gp5sm"]
 [ext_resource type="Resource" uid="uid://du2uj3x3odf3f" path="res://assets/main/cyclops_spawn.tres" id="13_wo1xn"]
 [ext_resource type="Resource" uid="uid://bgsiq2wfcc5b7" path="res://assets/main/ratpack_spawn.tres" id="14_78cg6"]
@@ -287,6 +288,8 @@ spawn_place = 1
 [node name="Main" type="Node"]
 script = ExtResource("1_tls33")
 game_over_scene = ExtResource("2_n80pv")
+metadata/_edit_horizontal_guides_ = [8.0, 261.0]
+metadata/_edit_vertical_guides_ = [140.0, 340.0]
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -294,8 +297,31 @@ game_over_scene = ExtResource("2_n80pv")
 unique_name_in_owner = true
 score_label = NodePath("ScoreLabel")
 
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.588235)
+
+[node name="UiTileMap" parent="UI/Control" instance=ExtResource("5_27wip")]
+position = Vector2(140, 10)
+
 [node name="Level" type="Node2D" parent="."]
+process_mode = 4
 y_sort_enabled = true
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Background" type="TileMap" parent="Level"]
 texture_filter = 1
