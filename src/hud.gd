@@ -5,7 +5,7 @@ class_name Hud extends Control
 
 var kill_count := 0 : set = _set_kill_count
 
-var _elapsed_seconds := 0
+#var _elapsed_seconds := 0
 
 func _ready() -> void:
 	#update_label()
