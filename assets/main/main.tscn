@@ -1,16 +1,13 @@
-[gd_scene load_steps=37 format=4 uid="uid://bwsligumeeoci"]
+[gd_scene load_steps=31 format=4 uid="uid://bwsligumeeoci"]
 
 [ext_resource type="PackedScene" uid="uid://dt0oureqbcp7n" path="res://assets/hud/hud.tscn" id="1_544d6"]
 [ext_resource type="Texture2D" uid="uid://dv81qe7btwu03" path="res://assets/tilemap/tilemap.png" id="1_h07t4"]
 [ext_resource type="Script" path="res://src/main.gd" id="1_tls33"]
 [ext_resource type="Texture2D" uid="uid://di26kyrql7biv" path="res://assets/background/tile_0042_transparent.png" id="2_b4et5"]
 [ext_resource type="PackedScene" uid="uid://0qxp2qd8ydf2" path="res://assets/character/player/player.tscn" id="3_0rlpb"]
-[ext_resource type="Texture2D" uid="uid://caq6medp4s8so" path="res://assets/hud/score_board_left.png" id="3_ljl2p"]
 [ext_resource type="FontFile" uid="uid://dyd7gtydcova4" path="res://assets/ui/PressStart2P-Regular.ttf" id="4_50ci8"]
-[ext_resource type="Texture2D" uid="uid://dv74xdlg1ult6" path="res://assets/hud/score_board_right.png" id="4_bvpic"]
 [ext_resource type="Texture2D" uid="uid://ceajj8yxxmb4d" path="res://assets/hud/tile_0045.png" id="4_il05x"]
 [ext_resource type="Script" path="res://src/enemy_spawner.gd" id="5_2tuqx"]
-[ext_resource type="Texture2D" uid="uid://bvrlvc2ci5cw1" path="res://assets/hud/score_board_mid.png" id="5_05w0n"]
 [ext_resource type="PackedScene" uid="uid://crb33h5h3tyyw" path="res://assets/ui/ui_tile_map.tscn" id="5_27wip"]
 [ext_resource type="Texture2D" uid="uid://c8ya4o1q0py6l" path="res://assets/ui/button_small.png" id="5_akovg"]
 [ext_resource type="Script" path="res://src/spawn_info.gd" id="5_gp5sm"]
@@ -300,26 +297,11 @@ separation = Vector2i(1, 1)
 [sub_resource type="TileSet" id="TileSet_bae7x"]
 sources/0 = SubResource("TileSetAtlasSource_311hy")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nt3fl"]
-texture = ExtResource("3_ljl2p")
-0:0/0 = 0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a5yh6"]
 texture = ExtResource("4_il05x")
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ytio8"]
-texture = ExtResource("4_bvpic")
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nj0xe"]
-texture = ExtResource("5_05w0n")
-0:0/0 = 0
-
 [sub_resource type="TileSet" id="TileSet_0kmrt"]
-sources/0 = SubResource("TileSetAtlasSource_nt3fl")
-sources/2 = SubResource("TileSetAtlasSource_ytio8")
-sources/3 = SubResource("TileSetAtlasSource_nj0xe")
 sources/1 = SubResource("TileSetAtlasSource_a5yh6")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0fqs"]
